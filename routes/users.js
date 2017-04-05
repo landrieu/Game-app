@@ -3,7 +3,7 @@ var crypto = require('crypto');
 var sha1 = require('sha1');
 var router = express.Router();
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://landrieu:toulouse3123@ds139470.mlab.com:39470/mytasks-test',['users']);
+var db = mongojs('mongodb://xxx:xxxx@ds139470.mlab.com:39470/mytasks-test',['users']);
 const nodemailer = require('nodemailer');
 
 //Get all users
