@@ -1,0 +1,147 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >Game Forum</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a></li>
+        <li><a routerLink="/games" routerLinkActive="active">Games</a></li>
+        <li><a routerLink="/lfg" routerLinkActive="active">Looking for a group</a></li>
+        <li class="active"><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/logout" routerLinkActive="active" *ngIf="signed">Sign Out</a></li>
+        <li><a routerLink="/login" routerLinkActive="active" *ngIf="!signed">Sign In</a></li>
+        <li><a routerLink="/signup" routerLinkActive="active" *ngIf="!signed">Sign Up</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<link rel="stylesheet" href="./profile.component.css">
+
+<div [hidden]="!errorAge" class="container" >
+                     <div class="alert alert-warning">
+                       <p class="text-center"><strong>Error !</strong> The age should be between 1 and 110</p>
+                    </div>
+</div>
+<div class="container"> 
+    <div id="fiche" class="col-md-2">
+        <div id="nameFiche">{{copyUser.name}}</div>
+        <img [src]="source" width ="180" height="220" class="img-responsive center-block"/>
+        
+        <div id="infoFiche">
+            <p>{{copyUser.username}}</p>
+            <p>{{copyUser.email}}</p>
+            <br />
+            <label class="btn btn-default btn-file">
+                Change photo <input type="file" style="display: none;">
+            </label>
+            
+        </div>
+    </div>
+    <div id="info" class="col-md-8 col-md-offset-1 well">
+        <h1 class="text-center">Information</h1>
+        
+      
+
+
+        <p>Profile</p>
+            <form class="well" name="edit">
+                
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="name" id="name" [(ngModel)]="model.name" [disabled]="!btnSubmit" value="{{model.name}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" name="username" id="username" [(ngModel)]="model.username" [disabled]="!btnSubmit" value="{{model.username}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" class="form-control" name="age" id="age" [(ngModel)]="model.age" [disabled]="!btnSubmit" value="{{model.age}}">
+                    </div>
+                    <div class="form-group">
+                        <label>Timezone</label>
+                        <select class="form-control" [disabled]="!btnSubmit" [(ngModel)]="model.timezone" [ngModelOptions]="{standalone: true}">
+                                 <option value="-3">-3</option>
+                                 <option value="-2">-2</option>
+                                 <option value="-1">-1</option>
+                                 <option value="0">4</option>
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                                 <option value="10">10</option>
+                                 <option value="11">11</option>
+                                 <option value="12">12</option>
+                        </select>
+
+                    </div>
+
+                    <div>
+                        <span>
+                            <button type="submit" (click)="edit()" class="btn btn-lg">Edit Profile</button>
+                        </span>
+                        <span>
+                            <button type="submit" (click)="update()" class="btn btn-lg btn-success" [disabled]="!btnSubmit">Submit</button>
+                        </span>
+                    </div>
+               
+                    
+            </form>
+
+            <div class="game-list">
+                
+                
+               
+            </div>
+<form name="gamer">
+<div class="medium-3 columns">
+    <label>First Menu
+        <select class="form-control" [(ngModel)]="firstMenu" name="first-menu" (change)="onChange($event.target.value)">
+            <option *ngFor="let i of games" [value]="i.name">{{i.name}}</option>
+        </select>
+    </label>
+</div>
+
+
+<div class="character-list">
+    <div *ngFor="let i of gameSelected.characters" >
+    <div class="col-md-7">
+        {{i}}
+    </div>
+    </div>
+    <div *ngFor="let i of gameSelected.checked">
+    <div class="col-md-3">
+        <input type="checkbox" [checked]=i >
+    </div>
+    <br>
+    <br>
+</div>
+</div>
+
+
+</form>
+
+<button type="submit" (click)="test()" class="btn btn-lg btn-success">Submit</button>
+        
+    </div>
+    
+</div>
+

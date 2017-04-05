@@ -1,0 +1,102 @@
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >Game Forum</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a></li>
+        <li  class="active"><a routerLink="/games" routerLinkActive="active">Games</a></li>
+        <li><a routerLink="/lfg" routerLinkActive="active">Looking for a group</a></li>
+        <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/login/signout" routerLinkActive="active" *ngIf="signed">Sign Out</a></li>
+        <li><a routerLink="/login" routerLinkActive="active" *ngIf="!signed">Sign In</a></li>
+        <li><a routerLink="/signup" routerLinkActive="active" *ngIf="!signed">Sign Up</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<form class="form-horizontal" name="login" *ngIf="!signed">
+    <!--New Design-->
+    <div class="container well">
+        <div>
+            <!-- LOGIN FORM -->
+               <div class="form-group">
+                   <div class="col-sm-6">
+                    <label>Name</label>
+                    <input type="text" class="form-control" [(ngModel)]="nameGame" name="name" id="name" [ngModelOptions]="{standalone: true}">
+                   </div>
+                   <div class="col-sm-6">
+                    <label>Platforms</label>
+                    <select class="form-control" [(ngModel)]="platformGame" [ngModelOptions]="{standalone: true}">
+                        <option value="All" selected>All</option>
+                        <option value="PC">PC</option>
+                        <option value="PS3">PS3</option>
+                        <option value="PS4">PS4</option>
+                        <option value="XBox">XBox</option>
+                        <option value="XB1">XB1</option>
+                    </select>
+                   </div>
+               </div>
+
+                <br />
+                <div class="text-center">
+                <button type="submit" (click)="search()" class="btn btn-success btn-lg">Search</button>
+                </div>
+
+            <hr>
+        </div>
+    </div>
+    
+
+</form>
+
+
+<div class="container well">
+  <h2>Game list for platform: {{platformGame}}</h2>
+
+<div [hidden]="!notFound" >
+                     <div class="alert alert-warning">
+                       <p class="text-center"><strong>Problem !</strong> No game found for this</p>
+                    </div>
+</div>
+  <ul class="list-group">
+      <div *ngFor="let i of arrayGame" >
+        <a [routerLink]="'/games/detail/'+i._id" style="text-decoration:none; color:inherit;color:#0059b3">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-xs-3">
+               <img [src]=dirname+i.path width ="130" height="150" class="img-responsive center-block"/>
+            </div>
+            <div class="col-xs-9">
+              <h4>{{i.name}} - {{i.platforms}} - Number of players: {{i.players}}</h4> 
+              <h5>Characters: {{i.characters}}</h5>
+              <p>{{i.abstract}}</p>
+            </div>
+          </div>
+        </li>
+        </a>
+      </div>
+  </ul>
+</div>
+<a routerLink="/">
+</a>
+
+
+
+
+

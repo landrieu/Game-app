@@ -1,0 +1,42 @@
+<!--
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >Game Forum</a>
+    </div>
+
+    
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li [routerLinkActive]="['active']"><a routerLink="/home">Home</a></li>
+        <li [routerLinkActive]="['active']"><a routerLink="/games">Games</a></li>
+        <li [routerLinkActive]="['active']"><a routerLink="/homie">Search player</a></li>
+        <li [routerLinkActive]="['active']"><a routerLink="/profile">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li [routerLinkActive]="['active']"><a routerLink="/login/signout" *ngIf="signed">Sign Out</a></li>
+        <li [routerLinkActive]="['active']"><a routerLink="/login" *ngIf="!signed">Sign In</a></li>
+        <li [routerLinkActive]="['active']"><a routerLink="/signup" *ngIf="!signed">Sign Up</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+AB{{signed}}-->
+    <!--<h1>My tasks List</h1>
+    <hr>
+    <tasks></tasks>
+    <users></users>
+     <h1>Angular Router</h1>
+  <nav>
+    <a routerLink="/home" routerLinkActive="active">Home</a>
+    <a routerLink="/signup" routerLinkActive="active">Sign Up</a>
+  </nav>-->
+  
+    <router-outlet></router-outlet>
+

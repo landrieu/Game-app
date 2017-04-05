@@ -1,0 +1,114 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >Game Forum</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a></li>
+        <li><a routerLink="/games" routerLinkActive="active">Games</a></li>
+        <li><a routerLink="/lfg" routerLinkActive="active">Looking for a group</a></li>
+        <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/logout" routerLinkActive="active" *ngIf="signed">Sign Out</a></li>
+        <li><a routerLink="/login" routerLinkActive="active" *ngIf="!signed">Sign In</a></li>
+        <li  class="active"><a routerLink="/signup" routerLinkActive="active" *ngIf="!signed">Sign Up</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container"> 
+<div [hidden]="!registered">
+                     <div class="alert alert-success">
+                       <p class="text-center"><strong>Success!</strong> Your account has been registered, an email will be sent, you will have to valid your account to sign in on GameForum</p>
+                    </div>
+</div>
+<form class="well" name="register">
+     <h1 class="text-center"><span class="glyphicon glyphicon-tent"></span> Registration</h1>
+     <br />
+    <div class="form-group">    
+    <!--New Design-->
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+            <!-- LOGIN FORM -->
+               <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="name" id="name" required [(ngModel)]="model.name" #name="ngModel">
+                        <div [hidden]="name.valid || name.pristine">
+                            <p class="help-block error-text">Name is required</p>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" class="form-control" name="username" required [(ngModel)]="model.username" #username="ngModel">
+                    <div [hidden]="username.valid || username.pristine">
+                            <p class="help-block error-text">Userame is required</p>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" class="form-control" name="email" required [(ngModel)]="model.email" #password="ngModel">
+                    <!--<div [hidden]="password.valid || password.pristine">
+                            <p class="help-block error-text">Password is required</p>
+                    </div>-->
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" required [(ngModel)]="model.password" #password="ngModel">
+                    <div [hidden]="password.valid || password.pristine">
+                            <p class="help-block error-text">Password is required</p>
+                    </div>
+                </div>
+                
+                <!--<p> {{error}}</p>-->
+
+                <div [hidden]="hide">
+                     <div class="alert alert-warning">
+                            <strong>Warning !</strong> This user exists
+                    </div>
+                 </div>
+                <br />
+                <div class="text-center">
+                <button type="submit" (click)="addUser()" class="btn btn-success btn-lg">Submit</button>
+                </div>
+
+            <hr>
+        </div>
+    </div>
+    </div>
+
+</form>
+<br />
+
+<div class="user-list">
+    <div *ngFor="let user of users">
+    <div class="col-md-3 ">
+        {{user.name}}
+    </div>
+    <div class="col-md-3">
+        {{user.username}}
+    </div>
+    <div class="col-md-3">
+        {{user.valid}}
+    </div>
+    <div class="col-md-3">
+        <input type="button" (click)="deleteUser(user._id)" value="Delete" class="btn btn-danger">
+    </div>
+    <br />
+    <br />
+    </div>
+</div>
+</div>
+
+

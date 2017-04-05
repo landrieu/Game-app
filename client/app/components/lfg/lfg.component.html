@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" >Game Forum</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a routerLink="/home" routerLinkActive="active">Home <span class="sr-only">(current)</span></a></li>
+        <li><a routerLink="/games" routerLinkActive="active">Games</a></li>
+        <li class="active"><a routerLink="/lfg" routerLinkActive="active">Looking for a group</a></li>
+        <li><a routerLink="/profile" routerLinkActive="active">Profile</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a routerLink="/logout" routerLinkActive="active" *ngIf="signed">Sign Out</a></li>
+        <li><a routerLink="/login" routerLinkActive="active" *ngIf="!signed">Sign In</a></li>
+        <li><a routerLink="/signup" routerLinkActive="active" *ngIf="!signed">Sign Up</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container well">
+<nav class="navbar">
+  <ul class="nav navbar-nav">
+    <li class="active"><a routerLink="/lfg">Look</a></li>
+    <li><a routerLink="/lfg/post">Post</a></li>
+  </ul>
+</nav>
+
+<hr />
+<div *ngFor="let i of Lfg" >
+         
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-xs-9">
+              <h4>{{i.game}} - {{i.type}} - Start at: {{i.timeStart}}</h4> 
+              <h5>Duration: {{i.duration}}</h5>
+              <p>{{i.description}}</p>
+            </div>
+          </div>
+        </li>
+      </div>
+</div>
