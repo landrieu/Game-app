@@ -2,7 +2,7 @@ var express = require('express');
 
 var router = express.Router();
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://landrieu:toulouse3123@ds139470.mlab.com:39470/mytasks-test');
+var db = mongojs('mongodb://xxx:xxxx3123@ds139470.mlab.com:39470/mytasks-test');
 
 
 
